@@ -57,7 +57,7 @@ taskmanager.memory.process.size: 1728m
 
 # The number of task slots that each TaskManager offers. Each slot runs one parallel pipeline.
 
-taskmanager.numberOfTaskSlots: 1
+taskmanager.numberOfTaskSlots: 2
 
 # The parallelism used for programs that did not specify and other parallelism.
 
@@ -273,13 +273,4 @@ jobmanager.execution.failover-strategy: region
 blob.server.port: 6124
 query.server.port: 6125
 
-jobmanager.rpc.address: flink-jobmanager
-taskmanager.numberOfTaskSlots: 2
-
-
-jobmanager.rpc.address: flink-jobmanager
-
-
-jobmanager.rpc.address: flink-jobmanager
-taskmanager.numberOfTaskSlots: 2
-
+metrics.reporter.prom.class: org.apache.flink.metrics.prometheus.PrometheusReporter

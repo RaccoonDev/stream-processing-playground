@@ -3,10 +3,6 @@ services:
   flink-jobmanager:
     image: flink:latest
     command: jobmanager
-    environment:
-      - |
-        FLINK_PROPERTIES=
-        jobmanager.rpc.address: flink-jobmanager
     ports:
       - 7001:8081
     volumes:
@@ -18,11 +14,6 @@ services:
     depends_on:
       - flink-jobmanager
     command: taskmanager
-    environment:
-      - |
-        FLINK_PROPERTIES=
-        jobmanager.rpc.address: flink-jobmanager
-        taskmanager.numberOfTaskSlots: 2
     ports:
       - "7002-7100:3000"
     volumes:
