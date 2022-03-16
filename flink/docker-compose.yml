@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  flink-jobmanager:
+    image: flink:latest
+    command: jobmanager
+    environment:
+      - FLINK_PROPERTIES=
+    ports:
+      - 8081:8081
+  grafana:
+    image: flink:latest
+    command: taskmanager
+    environment:
+      - FLINK_PROPERTIES=
+    ports:
+      - 3000:3000
+    links:
+      - flink-jobmanager
