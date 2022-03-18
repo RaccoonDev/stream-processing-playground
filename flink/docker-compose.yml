@@ -5,6 +5,8 @@ services:
     command: jobmanager
     ports:
       - 7001:8081
+    environment:
+      ENABLE_BUILT_IN_PLUGINS: "flink-s3-fs-hadoop-1.14.4.jar;flink-gelly_2.12-1.14.4.jar;flink-gelly-scala_2.12-1.14.4.jar"
     volumes:
       - type: bind
         source: ./flink-conf.yaml
@@ -16,6 +18,8 @@ services:
     command: taskmanager
     ports:
       - "7002-7100:3000"
+    environment:
+      ENABLE_BUILT_IN_PLUGINS: "flink-s3-fs-hadoop-1.14.4.jar;flink-gelly_2.12-1.14.4.jar;flink-gelly-scala_2.12-1.14.4.jar"
     volumes:
       - type: bind
         source: ./flink-conf.yaml
