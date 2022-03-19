@@ -90,7 +90,7 @@ services:
       KAFKA_REST_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
 
   battle-net-emulator:
-    image: dockerraccoon/battle-net-emulator:0.1
+    image: dockerraccoon/battle-net-emulator:0.2
     depends_on:
       - broker
       - schema-registry
