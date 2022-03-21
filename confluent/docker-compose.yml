@@ -11,6 +11,15 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
 
+  zookeeper-navigator:
+    image: elkozmon/zoonavigator:latest
+    hostname: zookeeper-navigator
+    ports:
+      - 9091:9000
+    environment:
+      HTTP_PORT: 9000
+    restart: unless-stopped
+
   broker:
     image: confluentinc/cp-server:7.0.1
     hostname: broker
@@ -96,6 +105,7 @@ services:
       - schema-registry
     hostname: battle-net-emulator
     container_name: battle-net-emulator
+    restart: unless-stopped
     environment:
       KAFKA_BOOTSTRAP_SERVER: "broker:29092"
       SCHEMA_REGISTRY_URI: "http://schema-registry:8081"

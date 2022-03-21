@@ -1,6 +1,6 @@
 version: "3.7"
 services:
-  flink-jobmanager:
+  jobmanager:
     image: flink:latest
     command: jobmanager
     ports:
@@ -11,21 +11,50 @@ services:
       - type: bind
         source: ./flink-conf.yaml
         target: /opt/flink/conf/flink-conf.yaml
-  flink-taskmanager:
+  jobmanager2:
     image: flink:latest
-    depends_on:
-      - flink-jobmanager
-    command: taskmanager
+    command: jobmanager
     ports:
-      - "7002-7100:3000"
+      - 7002:8081
     environment:
       ENABLE_BUILT_IN_PLUGINS: "flink-s3-fs-hadoop-1.14.4.jar;flink-gelly_2.12-1.14.4.jar;flink-gelly-scala_2.12-1.14.4.jar"
     volumes:
       - type: bind
         source: ./flink-conf.yaml
         target: /opt/flink/conf/flink-conf.yaml
-    links:
-      - flink-jobmanager
+  jobmanager3:
+    image: flink:latest
+    command: jobmanager
+    ports:
+      - 7003:8081
+    environment:
+      ENABLE_BUILT_IN_PLUGINS: "flink-s3-fs-hadoop-1.14.4.jar;flink-gelly_2.12-1.14.4.jar;flink-gelly-scala_2.12-1.14.4.jar"
+    volumes:
+      - type: bind
+        source: ./flink-conf.yaml
+        target: /opt/flink/conf/flink-conf.yaml
+  taskmanager1:
+    image: flink:latest
+    depends_on:
+      - jobmanager
+    command: taskmanager
+    environment:
+      ENABLE_BUILT_IN_PLUGINS: "flink-s3-fs-hadoop-1.14.4.jar;flink-gelly_2.12-1.14.4.jar;flink-gelly-scala_2.12-1.14.4.jar"
+    volumes:
+      - type: bind
+        source: ./flink-conf.yaml
+        target: /opt/flink/conf/flink-conf.yaml
+  taskmanager2:
+    image: flink:latest
+    depends_on:
+      - jobmanager
+    command: taskmanager
+    environment:
+      ENABLE_BUILT_IN_PLUGINS: "flink-s3-fs-hadoop-1.14.4.jar;flink-gelly_2.12-1.14.4.jar;flink-gelly-scala_2.12-1.14.4.jar"
+    volumes:
+      - type: bind
+        source: ./flink-conf.yaml
+        target: /opt/flink/conf/flink-conf.yaml
 
 networks:
   default:

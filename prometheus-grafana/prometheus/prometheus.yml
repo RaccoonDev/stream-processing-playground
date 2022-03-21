@@ -19,7 +19,7 @@ scrape_configs:
   static_configs:
   - targets:
     - localhost:9090
-- job_name: flink-jobmanager
+- job_name: jobmanager
   honor_timestamps: true
   scrape_interval: 15s
   scrape_timeout: 10s
@@ -27,8 +27,8 @@ scrape_configs:
   scheme: http
   static_configs:
   - targets:
-    - flink-jobmanager:9249
-- job_name: flink-taskmanager
+    - jobmanager:9249
+- job_name: jobmanager2
   honor_timestamps: true
   scrape_interval: 15s
   scrape_timeout: 10s
@@ -36,4 +36,31 @@ scrape_configs:
   scheme: http
   static_configs:
   - targets:
-    - flink-taskmanager:9249
+    - jobmanager2:9249
+- job_name: jobmanager3
+  honor_timestamps: true
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  metrics_path: /
+  scheme: http
+  static_configs:
+  - targets:
+    - jobmanager3:9249
+- job_name: taskmanager1
+  honor_timestamps: true
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  metrics_path: /
+  scheme: http
+  static_configs:
+  - targets:
+    - taskmanager1:9249
+- job_name: taskmanager2
+  honor_timestamps: true
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  metrics_path: /
+  scheme: http
+  static_configs:
+  - targets:
+    - taskmanager2:9249
