@@ -32,6 +32,8 @@ services:
     ports:
       - "9092:9092"
       - "9101:9101"
+    volumes:
+      - ./kafka/data:/var/lib/kafka/data
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
@@ -74,6 +76,8 @@ services:
       - schema-registry
     ports:
       - "9021:9021"
+    volumes:
+      - ./control-center/logs:/tmp/control-center-logs
     environment:
       CONTROL_CENTER_BOOTSTRAP_SERVERS: "broker:29092"
       CONTROL_CENTER_CONNECT_CONNECT-DEFAULT_CLUSTER: "connect:8083"
