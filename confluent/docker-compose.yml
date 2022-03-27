@@ -5,6 +5,9 @@ services:
     image: confluentinc/cp-zookeeper:7.0.1
     hostname: zookeeper
     container_name: zookeeper
+    volumes:
+      - ./zookeeper/log:/var/lib/zookeeper/log
+      - ./zookeeper/data:/var/lib/zookeeper/data
     ports:
       - "2181:2181"
     environment:
