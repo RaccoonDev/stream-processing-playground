@@ -40,4 +40,11 @@ In case you would like to run eveyrthing without docker, you can do the followin
 1. Download battle net emulator universal package from [this link](https://drive.google.com/file/d/1RGhHb5mFypVIYH6X43tH6n6n87YNf9BE/view?usp=sharing)
 1. Unpack the emulator and run the binary by running `./bin/battlenet_emulator`
 
+## Minio
+
+On mac I recommend following [these instructions](https://docs.min.io/docs/minio-quickstart-guide.html) and install minio from homebrew.
+
+## Flink
+
+Can be downloaded from offitial distribution started with `./bin/start-cluster.sh`
 
