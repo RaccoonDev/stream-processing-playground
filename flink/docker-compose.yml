@@ -11,6 +11,7 @@ services:
       - type: bind
         source: ./flink-conf.yaml
         target: /opt/flink/conf/flink-conf.yaml
+      - ./jobmanager1/tmp:/tmp
   jobmanager2:
     image: flink:latest
     command: jobmanager
@@ -22,6 +23,7 @@ services:
       - type: bind
         source: ./flink-conf.yaml
         target: /opt/flink/conf/flink-conf.yaml
+      - ./jobmanager2/tmp:/tmp
   jobmanager3:
     image: flink:latest
     command: jobmanager
@@ -33,6 +35,7 @@ services:
       - type: bind
         source: ./flink-conf.yaml
         target: /opt/flink/conf/flink-conf.yaml
+      - ./jobmanager3/tmp:/tmp
   taskmanager1:
     image: flink:latest
     depends_on:
@@ -44,6 +47,7 @@ services:
       - type: bind
         source: ./flink-conf.yaml
         target: /opt/flink/conf/flink-conf.yaml
+      - ./taskmanager1/tmp:/tmp
   taskmanager2:
     image: flink:latest
     depends_on:
@@ -55,6 +59,7 @@ services:
       - type: bind
         source: ./flink-conf.yaml
         target: /opt/flink/conf/flink-conf.yaml
+      - ./taskmanager2/tmp:/tmp
 
 networks:
   default:
